@@ -1,0 +1,43 @@
+\documentclass[a4paper,12pt]{report}
+
+% --- Packages essentiels ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}   % Pour les images
+\usepackage{hyperref}   % Pour les liens cliquables
+\usepackage{geometry}   % Pour les marges
+
+% Configuration des marges (Standard M2)
+\geometry{hmargin=2.5cm,vmargin=2.5cm}
+
+% --- Infos du mémoire ---
+\title{Conception et Réalisation d'une Architecture Conforme à la Loi 18-07}
+\author{Ton NOM \and Binôme NOM}
+\date{\today}
+
+\begin{document}
+
+% Page de garde
+\maketitle
+
+% Table des matières
+\tableofcontents
+\newpage
+
+% --- Inclusion des chapitres ---
+% L'avantage : Tu peux commenter une ligne (%) pour ne pas
+% compiler tout le mémoire quand tu bosses juste sur un chapitre.
+
+\input{chapitres/00_remerciements}
+\input{chapitres/01_introduction}
+\input{chapitres/02_etat_de_lart}
+\input{chapitres/03_conception}
+% \input{chapitres/04_realisation} % Pas encore écrit ? Commente-le !
+\input{chapitres/05_conclusion}
+
+% --- Bibliographie ---
+\bibliographystyle{plain}
+\bibliography{bibliographie}
+
+\end{document}
