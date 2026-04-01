@@ -1,43 +1,55 @@
-\documentclass[a4paper,12pt]{report}
-
-% --- Packages essentiels ---
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[french]{babel}
-\usepackage{graphicx}   % Pour les images
-\usepackage{hyperref}   % Pour les liens cliquables
-\usepackage{geometry}   % Pour les marges
-
-% Configuration des marges (Standard M2)
-\geometry{hmargin=2.5cm,vmargin=2.5cm}
-
-% --- Infos du mémoire ---
-\title{Conception et Réalisation d'une Architecture Conforme à la Loi 18-07}
-\author{Ton NOM \and Binôme NOM}
-\date{\today}
-
+\immediate\write18{makeindex \jobname.nlo -s nomencl.ist -o \jobname.nls} % Use this line to generate auto Nomenclature
+\documentclass[12pt, a4paper, oneside]{report}
+\input{Preamble/preamble}
+\usepackage{textcomp}
 \begin{document}
+	%% frontmatter
+	\pagenumbering{gobble}
+	\include{0-TitlePage/TitlePage}
+	\include{1-Dedication/dedication}
+	\pagestyle{empty}
+	\include{2-Acknowledgement/acknowledgement}
+	\include{3-Abstract/abstract}
+	\pagestyle{fancy}
+	\tableofcontents
+	\clearpage
+	\newpage
 
-% Page de garde
-\maketitle
+	\pagenumbering{roman}
+	\cleardoublepage
+	\listoffigures
+	\cleardoublepage
+	\listoftables
+	\cleardoublepage
+	\listofalgorithms
+	\cleardoublepage
+	\markboth{\MakeUppercase\nomname}{\MakeUppercase\nomname} \printnomenclature
+	\clearpage
+	\newpage
 
-% Table des matières
-\tableofcontents
-\newpage
+	%% mainmatter
+	\pagenumbering{arabic}
+	\include{4-Introduction/Introduction}
+	\include{5-Chapters/Chapter1/Chapter1}
+	\include{5-Chapters/Chapter2/Chapter2}
+	\include{5-Chapters/Chapter3/Chapter3}
+	\include{6-Conclusion/Conclusion}
+	\bibliographystyle{unsrt}
+	\bibliography{Mabib}
+	\clearpage
+	\newpage
 
-% --- Inclusion des chapitres ---
-% L'avantage : Tu peux commenter une ligne (%) pour ne pas
-% compiler tout le mémoire quand tu bosses juste sur un chapitre.
-
-\input{chapitres/00_remerciements}
-\input{chapitres/01_introduction}
-\input{chapitres/02_etat_de_lart}
-\input{chapitres/03_conception}
-% \input{chapitres/04_realisation} % Pas encore écrit ? Commente-le !
-\input{chapitres/05_conclusion}
-
-% --- Bibliographie ---
-\bibliographystyle{plain}
-\bibliography{bibliographie}
-
+	%% backmatter
+	\pagenumbering{Alph}
+	\begin{appendices}
+		%% Appendix Configuration
+		\renewcommand{\thechapter}{\Alph{chapter}}
+		\renewcommand{\thesection}{\thechapter.\arabic{section}}
+		\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+		\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+		\renewcommand{\thetable}{\thechapter.\arabic{table}}
+		%% Add Appendix
+		\include{7-Appendix/Appendix1/appendix1}
+		\include{7-Appendix/Appendix2/appendix2}
+	\end{appendices}
 \end{document}
